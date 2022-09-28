@@ -39,6 +39,7 @@ namespace System.Runtime.CompilerServices
     }
     public partial struct AsyncValueTaskMethodBuilder
     {
+        private object _dummy;
         private int _dummyPrimitive;
         public System.Threading.Tasks.ValueTask Task { get { throw null; } }
         public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.INotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
@@ -52,6 +53,7 @@ namespace System.Runtime.CompilerServices
     public partial struct AsyncValueTaskMethodBuilder<TResult>
     {
         private TResult _result;
+        private object _dummy;
         private int _dummyPrimitive;
         public System.Threading.Tasks.ValueTask<TResult> Task { get { throw null; } }
         public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.INotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
@@ -65,10 +67,12 @@ namespace System.Runtime.CompilerServices
     public readonly partial struct ConfiguredValueTaskAwaitable
     {
         private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable.ConfiguredValueTaskAwaiter GetAwaiter() { throw null; }
         public readonly partial struct ConfiguredValueTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
         {
             private readonly object _dummy;
+            private readonly int _dummyPrimitive;
             public bool IsCompleted { get { throw null; } }
             public void GetResult() { }
             public void OnCompleted(System.Action continuation) { }
@@ -78,10 +82,12 @@ namespace System.Runtime.CompilerServices
     public readonly partial struct ConfiguredValueTaskAwaitable<TResult>
     {
         private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable<TResult>.ConfiguredValueTaskAwaiter GetAwaiter() { throw null; }
         public readonly partial struct ConfiguredValueTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
         {
             private readonly object _dummy;
+            private readonly int _dummyPrimitive;
             public bool IsCompleted { get { throw null; } }
             public TResult GetResult() { throw null; }
             public void OnCompleted(System.Action continuation) { }
@@ -91,6 +97,7 @@ namespace System.Runtime.CompilerServices
     public readonly partial struct ValueTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
     {
         private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public bool IsCompleted { get { throw null; } }
         public void GetResult() { }
         public void OnCompleted(System.Action continuation) { }
@@ -99,6 +106,7 @@ namespace System.Runtime.CompilerServices
     public readonly partial struct ValueTaskAwaiter<TResult> : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
     {
         private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public bool IsCompleted { get { throw null; } }
         public TResult GetResult() { throw null; }
         public void OnCompleted(System.Action continuation) { }
@@ -131,7 +139,7 @@ namespace System.Threading.Tasks
     [System.Runtime.CompilerServices.AsyncMethodBuilderAttribute(typeof(System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder<>))]
     public readonly partial struct ValueTask<TResult> : System.IEquatable<System.Threading.Tasks.ValueTask<TResult>>
     {
-        internal readonly TResult _result;
+        private readonly TResult _result;
         private readonly object _dummy;
         private readonly int _dummyPrimitive;
         public ValueTask(System.Threading.Tasks.Sources.IValueTaskSource<TResult> source, short token) { throw null; }
@@ -171,15 +179,15 @@ namespace System.Threading.Tasks.Sources
     [System.FlagsAttribute]
     public enum ValueTaskSourceOnCompletedFlags
     {
-        FlowExecutionContext = 2,
         None = 0,
         UseSchedulingContext = 1,
+        FlowExecutionContext = 2,
     }
     public enum ValueTaskSourceStatus
     {
-        Canceled = 3,
-        Faulted = 2,
         Pending = 0,
         Succeeded = 1,
+        Faulted = 2,
+        Canceled = 3,
     }
 }
